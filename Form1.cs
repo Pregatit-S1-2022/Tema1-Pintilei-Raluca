@@ -43,6 +43,9 @@ namespace Tema1_PregatIT
                         OleDbCommand comanda;
                         comanda = new OleDbCommand();
                         comanda.Connection = conexiune;
+                        
+                        // e bine sa folosesti parametrii. ALtfel risti sql injection.                        
+                        // Daca txtUserName.Text e de genul "a; drop Users;--" poti pierde tabela de users.
                         comanda.CommandText = "INSERT into tbl_Users values ('" + txtUsername.Text + "','" + txtPassword.Text + "') ";
                         comanda.ExecuteNonQuery();
                         MessageBox.Show("Account created successfully");
@@ -149,6 +152,7 @@ namespace Tema1_PregatIT
 
         }
 
+// incearca sa cauti nume mai clare. User ar fi fost perfect, cu proprietatile Username sau Email, si Password.
         public class InformationBD
         {
             public string UsernameBD { get; set; }
@@ -202,7 +206,7 @@ namespace Tema1_PregatIT
             MessageBox.Show(ok +"");
 
             if (ok == false)
-                inregistrare();
+                inregistrare(); // pentru ca aplicatia sa fie globala, foloseste nume de metode si de variabile in engleza
             else
             {
                 OleDbCommand comandaa;
